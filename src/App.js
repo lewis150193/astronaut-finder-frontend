@@ -1,47 +1,36 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import axios from 'axios';
-
-const [people, setPeople]  = useState([]);
-
-const findLongestName = (array) => {
-    let Namelength = 0;
-    for (let i = 0; i < array.length; i++) {
-        if (array[i].length > Namelength) {
-            Namelength = array[i].length
-        }
-    }
-    return Namelength
-}
-
-const Display = () => {
-    for (let i = 0; i < findLongestName(people); i++) {
-
-    }
-    return (
-    <div>
-
-    </div>
-)};
+import { getAstronautNames } from './utils/api-calls'
+import { makeDashLine } from "./utils/utils";
 
 const App = () =>{
+    const [astronauts, setAstronauts]  = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:8090/astronauts', {
-        mode: 'no-cors',
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json',
-        }
-    })
-        .then( results => results.data.people.map( astronaut => setPeople([...people, astronaut.name])))
+      getAstronautNames()
+            .then( names => setAstronauts(names))
   },[]);
-  console.log(people)
+console.log(astronauts);
   return (
-    <div className="App">
-    Yoo
-        <p>{people}</p>
-
-    </div>
+      <>
+        <div className="divLining">
+            <b>Names</b>
+            <p>{makeDashLine(astronauts,"name")}</p>
+            {astronauts.map( astronaut => {
+                return(
+                    <p p className="padding">{astronaut.name}</p>
+                )})
+            }
+        </div>
+          <div className="divLining vertical">
+            <b>Craft</b>
+            <p>{makeDashLine(astronauts,"craft")}</p>
+              {astronauts.map( astronaut => {
+                  return(
+                      <span><p className="padding">{astronaut.craft}</p></span>
+                  )})
+              }
+        </div>
+          </>
   );
 }
 
