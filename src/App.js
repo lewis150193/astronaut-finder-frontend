@@ -12,26 +12,26 @@ const App = () =>{
 console.log(astronauts);
   return (
       <>
-        <div className="divLining">
+          <div className="divLining">
             <b>Names</b>
             <p>{makeDashLine(astronauts,"name")}</p>
-            {astronauts.map( astronaut => {
+            {astronauts.map(astronaut => {
                 return(
-                    <p p className="padding">{astronaut.name}</p>
+                    <p  className="padding">{astronaut.name}</p>
                 )})
             }
-        </div>
-          <div className="divLining vertical">
+          </div>
+          <div className="divLining">
             <b>Craft</b>
             <p>{makeDashLine(astronauts,"craft")}</p>
-              {astronauts.map( astronaut => {
+              {astronauts.map((astronaut, index) => {
                   return(
                       <span><p className="padding">{astronaut.craft}</p></span>
                   )})
               }
-        </div>
-          </>
+          </div>
+      </>
   );
-}
+};
 
 export default App;
