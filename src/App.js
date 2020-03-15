@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import { getAstronautNames } from './utils/api-calls'
-import { makeDashLine } from "./utils/utils";
+const { getAstronautNames } = require('./utils/api-calls');
+const  { makeDashLine } = require("./utils/utils");
 
 const App = () =>{
     const [astronauts, setAstronauts]  = useState([]);
@@ -9,7 +9,6 @@ const App = () =>{
       getAstronautNames()
             .then( names => setAstronauts(names))
   },[]);
-console.log(astronauts);
   return (
       <>
           <div className="divLining">

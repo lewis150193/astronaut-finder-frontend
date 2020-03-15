@@ -1,6 +1,6 @@
-import axios from 'axios';
+const axios = require('axios');
 
-export const getAstronautNames = () => {
+const getAstronautNames = () => {
   return axios.get('http://localhost:8090/astronauts/all/ordered', {
         mode: 'no-cors',
         headers: {
@@ -8,7 +8,11 @@ export const getAstronautNames = () => {
             'Content-Type': 'application/json',
         }
     }).then(names => names.data)
-};
+      .catch(error => console.log(error));
 
+};
+ module.exports = {
+     getAstronautNames
+ };
 
 
