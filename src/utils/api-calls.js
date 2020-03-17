@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const getAstronautNames = () => {
-  return axios.get('http://localhost:8090/astronauts/all/ordered', {
+  return axios.get('http://localhost:8888/astronauts/all/ordered', {
         mode: 'no-cors',
         headers: {
             'Access-Control-Allow-Origin': '*',
